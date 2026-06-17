@@ -1,0 +1,69 @@
+{
+  "items": [
+    {
+      "id": "cmp-assess-math-1",
+      "title": "Math Module 1 Assessment",
+      "shortDescription": "Baseline math diagnostic used to route learners.",
+      "type": "assessment",
+      "approximateDurationMinutes": 35,
+      "metadata": { "assessment": { "maxScore": 100, "passingScore": 50 } }
+    },
+    {
+      "id": "cmp-unit-math-2-easy",
+      "title": "Math Module 2 - Easy",
+      "shortDescription": "Foundational math remediation unit.",
+      "type": "unit",
+      "approximateDurationMinutes": 35,
+      "metadata": { "unit": { "recommendedMinutes": 30 } }
+    },
+    {
+      "id": "cmp-unit-math-2-advanced",
+      "title": "Math Module 2 - Advanced",
+      "shortDescription": "Stretch unit for learners who passed the diagnostic.",
+      "type": "unit",
+      "approximateDurationMinutes": 35,
+      "metadata": { "unit": { "recommendedMinutes": 40 } }
+    },
+    {
+      "id": "cmp-assess-reading-1",
+      "title": "Reading & Comp Module 1",
+      "shortDescription": "Reading comprehension checkpoint assessment.",
+      "type": "assessment",
+      "approximateDurationMinutes": 32,
+      "metadata": { "assessment": { "maxScore": 100, "passingScore": 60 } }
+    },
+    {
+      "id": "cmp-unit-reading-2-easy",
+      "title": "R&C Module 2 - Easy",
+      "shortDescription": "Supported reading practice for emerging readers.",
+      "type": "unit",
+      "approximateDurationMinutes": 32,
+      "metadata": { "unit": { "recommendedMinutes": 30 } }
+    },
+    {
+      "id": "cmp-unit-reading-2-advanced",
+      "title": "R&C Module 2 - Advanced",
+      "shortDescription": "Advanced inference and analysis reading unit.",
+      "type": "unit",
+      "approximateDurationMinutes": 32,
+      "metadata": { "unit": { "recommendedMinutes": 38 } }
+    },
+    {
+      "id": "cmp-unit-intro-orientation",
+      "title": "Course Orientation",
+      "shortDescription": "Short onboarding unit explaining how the path works.",
+      "type": "unit",
+      "approximateDurationMinutes": 10,
+      "metadata": { "unit": { "recommendedMinutes": 10 } }
+    },
+    {
+      "id": "cmp-assess-final-checkpoint",
+      "title": "Final Checkpoint",
+      "shortDescription": "Summative assessment confirming readiness to complete.",
+      "type": "assessment",
+      "approximateDurationMinutes": 45,
+      "metadata": { "assessment": { "maxScore": 100, "passingScore": 70 } }
+    }
+  ],
+  "totalCount": 8
+}

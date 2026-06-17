@@ -1,0 +1,124 @@
+{
+  "id": "lp-sat-adaptive-001",
+  "name": "SAT Adaptive Path",
+  "description": "Routes learners based on math and reading performance.",
+  "status": "draft",
+  "version": 1,
+  "canvas": {
+    "zoom": 0.7,
+    "offsetX": 0,
+    "offsetY": 0
+  },
+  "nodes": [
+    {
+      "id": "node-start",
+      "componentId": "system-start",
+      "type": "start",
+      "label": "Start",
+      "position": { "x": 420, "y": 60 }
+    },
+    {
+      "id": "node-math-1",
+      "componentId": "cmp-assess-math-1",
+      "type": "assessment",
+      "label": "Math Module 1",
+      "position": { "x": 420, "y": 150 },
+      "config": {
+        "approximateDurationMinutes": 35,
+        "assessment": {
+          "maxScore": 100,
+          "passingScore": 50
+        }
+      }
+    },
+    {
+      "id": "node-math-2-easy",
+      "componentId": "cmp-unit-math-2-easy",
+      "type": "unit",
+      "label": "Math Module 2 - Easy",
+      "position": { "x": 290, "y": 320 },
+      "config": {
+        "approximateDurationMinutes": 35
+      }
+    },
+    {
+      "id": "node-math-2-advanced",
+      "componentId": "cmp-unit-math-2-advanced",
+      "type": "unit",
+      "label": "Math Module 2 - Advanced",
+      "position": { "x": 560, "y": 320 },
+      "config": {
+        "approximateDurationMinutes": 35
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge-start-math1",
+      "sourceNodeId": "node-start",
+      "targetNodeId": "node-math-1",
+      "label": "Start assessment",
+      "priority": 1,
+      "isDefault": true,
+      "conditions": {
+        "operator": "AND",
+        "rules": []
+      }
+    },
+    {
+      "id": "edge-math1-easy",
+      "sourceNodeId": "node-math-1",
+      "targetNodeId": "node-math-2-easy",
+      "label": "Score below passing",
+      "priority": 1,
+      "isDefault": false,
+      "conditions": {
+        "operator": "AND",
+        "rules": [
+          {
+            "id": "rule-math1-complete",
+            "sourceType": "assessment",
+            "sourceNodeId": "node-math-1",
+            "metric": "completion",
+            "operator": "eq",
+            "value": true
+          },
+          {
+            "id": "rule-math1-low-band",
+            "sourceType": "assessment",
+            "sourceNodeId": "node-math-1",
+            "metric": "score_range",
+            "operator": "between",
+            "range": {
+              "min": 0,
+              "max": 49,
+              "minInclusive": true,
+              "maxInclusive": true
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "edge-math1-advanced",
+      "sourceNodeId": "node-math-1",
+      "targetNodeId": "node-math-2-advanced",
+      "label": "Passed assessment",
+      "priority": 2,
+      "isDefault": false,
+      "conditions": {
+        "operator": "AND",
+        "rules": [
+          {
+            "id": "rule-math1-passed",
+            "sourceType": "assessment",
+            "sourceNodeId": "node-math-1",
+            "metric": "passed",
+            "operator": "eq",
+            "value": true
+          }
+        ]
+      }
+    }
+  ]
+}
