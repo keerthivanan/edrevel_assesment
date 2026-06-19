@@ -47,6 +47,7 @@ interface BuilderState {
 
   // Mutations
   addComponentNode: (component: AvailableComponent, position: { x: number; y: number }) => void;
+  addStructuralNode: (type: "start" | "end", position: { x: number; y: number }) => void;
   selectNode: (id: string | null) => void;
   selectEdge: (id: string | null) => void;
   updateNode: (id: string, patch: Partial<RFNode["data"]>) => void;
@@ -166,6 +167,21 @@ export const useBuilder = create<BuilderState>((set, get) => ({
             ? { assessment: component.metadata.assessment }
             : {}),
         },
+      },
+    };
+    set({ nodes: [...get().nodes, node], selectedNodeId: id, selectedEdgeId: null });
+  },
+
+  addStructuralNode: (type, position) => {
+    const id = uid("node");
+    const node: RFNode = {
+      id,
+      type: "content",
+      position,
+      data: {
+        label: type === "start" ? "Start" : "Complete",
+        nodeType: type,
+        componentId: type === "start" ? "system-start" : "system-end",
       },
     };
     set({ nodes: [...get().nodes, node], selectedNodeId: id, selectedEdgeId: null });

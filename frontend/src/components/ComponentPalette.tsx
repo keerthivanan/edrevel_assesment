@@ -11,6 +11,11 @@ export default function ComponentPalette() {
     e.dataTransfer.effectAllowed = "move";
   };
 
+  const onStructuralDragStart = (e: React.DragEvent, type: "start" | "end") => {
+    e.dataTransfer.setData("application/alpb-structural", type);
+    e.dataTransfer.effectAllowed = "move";
+  };
+
   return (
     <aside className="palette" aria-label="Available content">
       <div className="palette__header">
@@ -19,6 +24,26 @@ export default function ComponentPalette() {
       </div>
 
       <div className="palette__list">
+        <div className="palette__group">Flow</div>
+        <div className="palette__structural">
+          <div
+            className="structural-card structural-card--start"
+            draggable
+            onDragStart={(e) => onStructuralDragStart(e, "start")}
+            data-testid="palette-start"
+          >
+            <span className="node__icon node__icon--start">▶</span> Start
+          </div>
+          <div
+            className="structural-card structural-card--end"
+            draggable
+            onDragStart={(e) => onStructuralDragStart(e, "end")}
+            data-testid="palette-end"
+          >
+            <span className="node__icon node__icon--end">■</span> Complete
+          </div>
+        </div>
+        <div className="palette__group">Content</div>
         {components.map((c) => (
           <div
             key={c.id}

@@ -96,6 +96,16 @@ describe("builder store", () => {
     expect(edges).toHaveLength(0);
   });
 
+  it("adds start and end structural nodes with system component ids", () => {
+    const s = useBuilder.getState();
+    s.addStructuralNode("start", { x: 0, y: 0 });
+    s.addStructuralNode("end", { x: 0, y: 400 });
+    const { nodes } = useBuilder.getState();
+    expect(nodes.map((n) => n.data.nodeType)).toEqual(["start", "end"]);
+    expect(nodes[0].data.componentId).toBe("system-start");
+    expect(nodes[1].data.label).toBe("Complete");
+  });
+
   it("toggles the AND/OR operator", () => {
     const s = useBuilder.getState();
     s.addComponentNode(assessment, { x: 0, y: 0 });

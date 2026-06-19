@@ -29,6 +29,7 @@ function CanvasInner() {
   const onEdgesChange = useBuilder((s) => s.onEdgesChange);
   const onConnect = useBuilder((s) => s.onConnect);
   const addComponentNode = useBuilder((s) => s.addComponentNode);
+  const addStructuralNode = useBuilder((s) => s.addStructuralNode);
   const selectNode = useBuilder((s) => s.selectNode);
   const selectEdge = useBuilder((s) => s.selectEdge);
 
@@ -41,13 +42,20 @@ function CanvasInner() {
   const onDrop = useCallback(
     (event: React.DragEvent) => {
       event.preventDefault();
+      const position = screenToFlowPosition({ x: event.clientX, y: event.clientY });
+
+      const structural = event.dataTransfer.getData("application/alpb-structural");
+      if (structural === "start" || structural === "end") {
+        addStructuralNode(structural, position);
+        return;
+      }
+
       const raw = event.dataTransfer.getData("application/alpb-component");
       if (!raw) return;
       const component = JSON.parse(raw) as AvailableComponent;
-      const position = screenToFlowPosition({ x: event.clientX, y: event.clientY });
       addComponentNode(component, position);
     },
-    [screenToFlowPosition, addComponentNode],
+    [screenToFlowPosition, addComponentNode, addStructuralNode],
   );
 
   const onDragOver = useCallback((event: React.DragEvent) => {
