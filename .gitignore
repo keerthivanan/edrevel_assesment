@@ -9,6 +9,11 @@ venv/
 node_modules/
 dist/
 *.local
+*.tsbuildinfo
+
+# Playwright
+/frontend/test-results/
+/frontend/playwright-report/
 
 # Editor / OS
 .vscode/
