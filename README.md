@@ -148,6 +148,20 @@ remove rules, AND/OR toggle, cascade-delete of a node's edges).
 ✓ tsc -b && vite build — 0 type errors
 ```
 
+### End-to-end (real browser) — `cd frontend && node e2e-check.mjs`
+
+Drives the live app in headless Chromium (Playwright) with both servers running. Verifies: palette
+loads 8 components from the API, loading a saved path renders 4 nodes / 3 edges, edge labels render
+as compact pills (not a full-width bar), node label editing, the edge condition editor + add-rule,
+drag-and-drop adding a node, saving via the UI, and **no console errors**. Produces
+`frontend/e2e-screenshot.png` (included as visual evidence).
+
+```
+ALL E2E CHECKS PASSED (11/11)
+```
+
+![Builder screenshot](frontend/e2e-screenshot.png)
+
 ---
 
 ## Submission checklist (assessment §9)
