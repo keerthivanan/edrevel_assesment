@@ -74,7 +74,21 @@ function CanvasInner() {
       >
         <Background gap={20} color="#e2e8f0" />
         <Controls showInteractive={false} />
-        <MiniMap pannable zoomable nodeStrokeWidth={3} />
+        <MiniMap
+          pannable
+          zoomable
+          nodeStrokeWidth={3}
+          nodeBorderRadius={6}
+          maskColor="rgba(241, 245, 249, 0.7)"
+          nodeColor={(n) => {
+            const t = (n.data as { nodeType?: string } | undefined)?.nodeType;
+            return (
+              { assessment: "#8b5cf6", unit: "#3b82f6", start: "#10b981", end: "#475569" }[
+                t ?? ""
+              ] ?? "#94a3b8"
+            );
+          }}
+        />
       </ReactFlow>
     </div>
   );
