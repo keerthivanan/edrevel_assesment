@@ -12,7 +12,7 @@ files as the API contract and keeps the builder UI close to the supplied mockup.
 | Frontend | **React 18 + TypeScript** (Vite dev/build tool), **React Flow** for the node/edge canvas, **Zustand** for state |
 | Backend | **Python + FastAPI**, Pydantic v2 for contract-faithful validation |
 | Persistence | **SQLite** (via SQLAlchemy 2.0) |
-| Tests | **pytest** (backend, 20 tests) · **Vitest** + Testing Library (frontend, 8 tests) |
+| Tests | **pytest** (backend, 20 tests) · **Vitest** + Testing Library (frontend, 9 tests) · Playwright e2e (11 checks) |
 
 > **Note on libraries (per assessment §4):** React Flow handles node rendering, repositioning,
 > connector drawing, panning/zoom and the minimap. Zustand is a tiny state container. On the
@@ -135,12 +135,12 @@ original provided schema files.
 
 ```
 Test Files  2 passed (2)
-     Tests  8 passed (8)
+     Tests  9 passed (9)
 ```
 
 Covers: contract ↔ React Flow adapters (round-trip preserves positions/labels/rules; conditional edges
-animate), and the Zustand store (add node from component, create conditional edge on connect, add/update/
-remove rules, AND/OR toggle, cascade-delete of a node's edges).
+animate), and the Zustand store (add node from component, add start/end structural nodes, create
+conditional edge on connect, add/update/remove rules, AND/OR toggle, cascade-delete of a node's edges).
 
 ### Production build (type-check) — `cd frontend && npm run build`
 
@@ -171,7 +171,7 @@ ALL E2E CHECKS PASSED (11/11)
 2. **Time spent** — ~1 working day.
 3. **Assumptions & tradeoffs** — see below.
 4. **Setup instructions** — see *Getting started*.
-5. **Test execution evidence** — see *Testing* (20 backend + 8 frontend passing; build clean).
+5. **Test execution evidence** — see *Testing* (20 backend + 9 frontend + 11 e2e passing; build clean).
 
 ---
 
